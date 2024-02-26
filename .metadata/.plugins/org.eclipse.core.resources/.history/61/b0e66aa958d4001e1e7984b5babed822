@@ -1,0 +1,31 @@
+package com;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Ex04Lunch
+ */
+@WebServlet("/Ex04Lunch")
+public class Ex04Lunch extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+//		한식 리스트
+		String[] klist = {"풍남옥", "그냥집밥", "해 뜨는 집", "좋은 국밥", "신신식당", "설농탕"};
+//		중식 리스트
+		String[] clist = {"1515", "황금성", "만리화", "열도지"};
+		String[] jlist = {"쿠로시로", "마시따라멘", "바른초밥", "공초밥", "카레마왕", "카레카레"};
+		
+		
+	}
+
+}

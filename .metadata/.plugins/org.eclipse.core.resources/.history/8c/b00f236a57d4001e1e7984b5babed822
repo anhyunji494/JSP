@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action = "">
+		<select>
+			<option>한식</option>
+			<option>중식</option>
+			<option>일식</option>
+		</select>
+	</form>
+</body>
+</html>
