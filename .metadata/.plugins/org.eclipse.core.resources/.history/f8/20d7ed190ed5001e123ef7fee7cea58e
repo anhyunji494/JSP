@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action = "Ex06BgColor">
+		원하는 색상을 선택하세요. 
+		<input type = "color" name = "color'
+		<input type = "submit" value = "변경">
+	</form>
+</body>
+</html>
