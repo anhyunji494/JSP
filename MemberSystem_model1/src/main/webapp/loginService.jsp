@@ -1,3 +1,4 @@
+<%@page import="com.model.MemberDTO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -13,8 +14,10 @@
 <body>
 	<%
 	// 문제, 여기로 넘어온 id와 pw가 일치하는 사람의 id, pw, nick, phone 값을 콘솔창에 출력하시오. 
-	String id = request.getParameter("id");
-	String pw = request.getParameter("pw");
+	String input_id = request.getParameter("id");
+	String input_pw = request.getParameter("pw");
+	
+	MemberDTO info = null; 
 
 	// 1. 드라이버 동적 로딩 
 	Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -33,8 +36,8 @@
 	String sql = "SELECT * FROM MEMBER WHERE ID = ? AND PW = ?";
 	PreparedStatement psmt = null;
 	psmt = conn.prepareStatement(sql);
-	psmt.setString(1, id);
-	psmt.setString(2, pw);
+	psmt.setString(1, input_id);
+	psmt.setString(2, input_pw);
 
 	ResultSet rs = null;
 	rs = psmt.executeQuery();
@@ -42,12 +45,14 @@
 	// rs.next(): 커서를 한칸 내려감 
 	// 커서를 한 칸 내릴 수 있다면 true 반환 => 로그인 성공 
 	if (rs.next()) {
-		String login_id = rs.getString(1);
-		String login_pw = rs.getString(2);
-		String login_nick = rs.getString(3);
-		String login_phone = rs.getString(4);
-		System.out.println("로그인 성공");
-		System.out.println(login_id + "/" + login_pw + "/" + login_nick + "/" + login_phone);
+		// 로그인이 성공했을 때 ★
+		String id = rs.getString("ID");
+		String pw = rs.getString("PW");
+		String nick = rs.getString("NICK");
+		String phone = rs.getString("PHONE");
+		
+		info = new MemberDTO(id, pw, nick, phone);
+		
 	} else if (!rs.next()) {
 		System.out.println("로그인 실패");
 	}
@@ -67,6 +72,17 @@
 	if (conn != null) {
 		conn.close();
 		System.out.println("conn 연결 종료");
+	}
+	
+	// 로그인 성공 실패 여부 
+	
+	if(info == null){
+		// 로그인 실패
+		response.sendRedirect("login.jsp");
+	} else {
+		// 로그인 성공 
+		session.setAttribute("info", info);
+		response.sendRedirect("loginSuccess.jsp");
 	}
 	%>
 </body>
