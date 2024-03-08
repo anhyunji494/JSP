@@ -37,6 +37,15 @@ public class MemberDTO {
 		this.phone = phone;
 	}
 	
+	
+	// 로그인 생성자 
+	public MemberDTO(String id, String pw) {
+		super();
+		this.id = id;
+		this.pw = pw;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "MemberDTO [id=" + id + ", pw=" + pw + ", nick=" + nick + ", phone=" + phone + "]";
